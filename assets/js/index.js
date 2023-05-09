@@ -36,7 +36,7 @@ gastoForm.addEventListener('submit', (event) => {
 function actualizarTablaGastos() {
   tablaGastos.innerHTML = '';
   gastos.forEach((gasto, index) => {
-    tablaGastos.innerHTML += '<tr> <td>' + gasto.gasto + '</td> <td>' + gasto.valor + '</td> <td><button class="btn btn-danger" onclick="eliminarGasto(' + index + ')"><i class="bi bi-trash"></i></button></td> </tr>';
+    tablaGastos.innerHTML += '<tr> <td>' + gasto.gasto + '</td> <td>' +'$'+ gasto.valor + '</td> <td><button class="btn btn-danger" onclick="eliminarGasto(' + index + ')"><i class="far fa-trash-alt"></i></button></td> </tr>';
   });
   actualizarPresupuesto();
 }

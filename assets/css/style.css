@@ -31,13 +31,38 @@
   
   .btn-presupuesto:hover {
     background-color: #218838;
-    border-color: #1e7e34;
     color: white;
+    border-color: #1e7e34;
   }
   
   .btn-gasto:hover {
     background-color: #c82333;
-    border-color: #bd2130;
     color: white;
+    border-color: #bd2130;
+  }
+  
+  .card-gasto .btn-primary:hover {
+    background-color: #db9297;
+    border-color: #b84954;
+    color: white !important; 
+    font-weight: bold;
+  }
+  
+  .card-presupuesto .btn-primary:hover {
+    background-color: #acd5ba;
+    border-color: #327033;
+    color: white !important; 
+    font-weight: bold;
+  }
+  
+
+  .card-gasto .btn-primary:focus,
+  .card-gasto .btn-primary:active,
+  .card-presupuesto .btn-primary:focus,
+  .card-presupuesto .btn-primary:active {
+    background-color: #db9297;
+    border-color: #b84954;
+    color: #b84954 !important;
+    font-weight: bold;
   }
   
