@@ -28,7 +28,7 @@ gastoForm.addEventListener('submit', (event) => {
     const nuevoGasto = { gasto, valor };
     gastos.push(nuevoGasto);
     actualizarTablaGastos();
-    actualizarSaldo(valor);
+    actualizarSaldo(valor, gastos);
     gastoForm.reset();
   }
 });
@@ -43,19 +43,19 @@ function actualizarTablaGastos() {
 
 function actualizarPresupuesto() {
   const gastoTotal = gastos.reduce((total, gasto) => total + gasto.valor, 0);
-  presupuestoTd.innerHTML = presupuesto;
-  gastoTd.innerHTML = gastoTotal;
-  saldoTd.innerHTML = presupuesto - gastoTotal;
+  presupuestoTd.innerHTML = "$" + presupuesto.toLocaleString();
+  gastoTd.innerHTML = "$" + gastoTotal.toLocaleString();
+  saldoTd.innerHTML = "$" + (presupuesto - gastoTotal).toLocaleString();
 }
 
-function actualizarSaldo(valor) {
-  const saldo = Number(saldoTd.innerHTML);
-  saldoTd.innerHTML = presupuesto - gastoTotal;
+function actualizarSaldo(valor, gastos) {
+  const gastoTotal = gastos.reduce((total, gasto) => total + gasto.valor, 0);
+  saldoTd.innerHTML = "$" + (presupuesto - gastoTotal).toLocaleString();
 }
 
 function eliminarGasto(index) {
   const valorGasto = gastos[index].valor;
   gastos.splice(index, 1);
   actualizarTablaGastos();
-  actualizarSaldo(-valorGasto);
+  actualizarSaldo(-valorGasto, gastos);
 }
