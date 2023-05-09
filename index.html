@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Presupuesto
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="presupuesto-input" class="form-label">Ingrese su presupuesto:</label>
+                                <input type="number" class="form-control" id="presupuesto-input">
+                            </div>
+                            <button type="button" class="btn btn-primary" id="calcular-btn">Calcular</button>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text">Presupuesto total: $<span id="presupuesto">0.00</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Gastos
+                    </div>
+                    <div class="card-body">
+                        <form id="agregar-gasto-form">
+                            <div class="mb-3">
+                                <label for="nombre-input" class="form-label">Nombre del gasto:</label>
+                                <input type="text" class="form-control" id="nombre-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="valor-input" class="form-label">Valor del gasto:</label>
+                                <input type="number" class="form-control" id="valor-input">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Añadir Gasto</button>
+                        </form>
+                    </div>
+                    <ul class="list-group list-group-flush" id="gastos-list">
+                        <li class="list-group-item">Lista de gastos</li>
+                    </ul>
+                    <div class="card-footer">
+                        <p class="card-text">Total de gastos: $<span id="gastos">0.00</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Saldo
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Saldo disponible: $<span id="saldo">0.00</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text">Total: $<span id="total">0.00</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
