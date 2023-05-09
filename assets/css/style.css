@@ -1,11 +1,43 @@
-#saldo-section {
-    background-color: green;
+.card-presupuesto {
+    background-color: #acd5ba    !important;
+    color: rgb(11, 11, 11) !important;
+    border-color:  #327033 ;
   }
   
-  #gastos-section {
-    background-color: red;
+  .card-gasto {
+    background-color: #db9297  !important;
+    color: rgb(7, 7, 7) !important;
+  }
+  .card-presupuesto .btn-primary {
+    background-color: #acd5ba;
+    border-color: #327033;
+    color: #327033 !important;
+    font-weight: bold;
+  }
+  .card-gasto .btn-primary {
+    background-color: #db9297;
+    border-color:  #b84954  ;
+    color:  #b84954  !important;
+    font-weight: bold;
   }
   
-  #total-section {
-    background-color: white;
+  .card-gasto .btn-primary:hover {
+    background-color: #C82333;
   }
+  
+  .card-presupuesto .btn-primary:hover {
+    background-color: #1E7E34;
+  }
+  
+  .btn-presupuesto:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: white;
+  }
+  
+  .btn-gasto:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+  }
+  

@@ -50,7 +50,7 @@ function actualizarPresupuesto() {
 
 function actualizarSaldo(valor) {
   const saldo = Number(saldoTd.innerHTML);
-  saldoTd.innerHTML = presupuesto * gastoTotal;
+  saldoTd.innerHTML = presupuesto - gastoTotal;
 }
 
 function eliminarGasto(index) {

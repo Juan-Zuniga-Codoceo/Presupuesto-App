@@ -10,36 +10,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body>
-    <body>
         <div class="container">
           <div class="row mt-3">
             <div class="col-md-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Presupuesto</h5>
+              <div class="card card-presupuesto">
+                <div class="card-body"> 
+                    <h5 class="card-title">Presupuesto</h5>
                   <form id="presupuesto-form">
                     <div class="form-group">
-                      <label for="presupuesto">Agregar presupuesto</label>
+                      <label for="presupuesto">Ingresa tu presupuesto</label>
+                      <br>
+                      <br>
                       <input type="number" class="form-control" id="presupuesto" required>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Agregar</button>
                   </form>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card">
+              <div class="card card-gasto">
                 <div class="card-body">
                   <h5 class="card-title">Gastos</h5>
                   <form id="gasto-form">
                     <div class="form-group">
                       <label for="gasto">Agregar gasto</label>
+                      <br>
                       <input type="text" class="form-control" id="gasto" required>
                     </div>
+                    <br>
                     <div class="form-group">
                       <label for="valor">Valor</label>
                       <input type="number" class="form-control" id="valor" required>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Agregar</button>
                   </form>
                 </div>
