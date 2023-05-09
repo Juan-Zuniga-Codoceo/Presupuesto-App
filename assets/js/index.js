@@ -1,76 +1,61 @@
-// obtener los elementos de cada sección
-const saldoSection = document.getElementById('saldo-section');
-const gastosSection = document.getElementById('gastos-section');
-const totalSection = document.getElementById('total-section');
 
-// Variables para el presupuesto
-let presupuestoTotal = 0;
-let saldo = 0;
+let presupuesto = 0;
 let gastos = [];
+const presupuestoForm = document.getElementById('presupuesto-form');
+const gastoForm = document.getElementById('gasto-form');
+const presupuestoTd = document.getElementById('presupuesto-td');
+const gastoTd = document.getElementById('gasto-td');
+const saldoTd = document.getElementById('saldo-td');
+const tablaGastos = document.getElementById('tabla-gastos');
 
-// Selección de elementos del DOM
-const presupuestoInput = document.getElementById("presupuesto-input");
-const calcularBtn = document.getElementById("calcular-btn");
-const saldoDiv = document.getElementById("saldo");
-const gastosDiv = document.getElementById("gastos");
-const agregarGastoForm = document.getElementById("agregar-gasto-form");
-
-// Función para actualizar el saldo
-const actualizarSaldo = () => {
-  saldo = presupuestoTotal - gastos.reduce((total, gasto) => total + gasto.valor, 0);
-  saldoDiv.textContent = `$ ${saldo.toFixed(2)}`;
-};
-
-// Función para actualizar los gastos
-const actualizarGastos = () => {
-  gastosDiv.innerHTML = "";
-  gastos.forEach((gasto) => {
-    const gastoDiv = document.createElement("div");
-    gastoDiv.classList.add("gasto");
-    gastoDiv.innerHTML = `
-      <div class="gasto-nombre">${gasto.nombre}</div>
-      <div class="gasto-valor">$ ${gasto.valor.toFixed(2)}</div>
-      <div class="eliminar-gasto" data-id="${gasto.id}">
-        <i class="fas fa-trash"></i>
-      </div>
-    `;
-    gastosDiv.appendChild(gastoDiv);
-  });
-};
-
-// Función para actualizar el presupuesto
-const actualizarPresupuesto = () => {
-  presupuestoTotal = parseFloat(presupuestoInput.value);
-  document.getElementById("presupuesto").textContent = `$ ${presupuestoTotal.toFixed(2)}`;
-};
-
-// Evento para el botón de "calcular"
-calcularBtn.addEventListener("click", () => {
-  actualizarPresupuesto();
-  actualizarSaldo();
-});
-
-// Evento para el formulario de agregar gastos
-agregarGastoForm.addEventListener("submit", (event) => {
+presupuestoForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const nombreInput = document.getElementById("nombre-input");
-  const valorInput = document.getElementById("valor-input");
-  const nombre = nombreInput.value;
-  const valor = parseFloat(valorInput.value);
-  const id = new Date().valueOf().toString();
-  gastos.push({ id, nombre, valor });
-  actualizarGastos();
-  actualizarSaldo();
-  nombreInput.value = "";
-  valorInput.value = "";
+  presupuesto = Number(document.getElementById('presupuesto').value);
+  presupuestoTd.innerHTML = presupuesto;
+  saldoTd.innerHTML = presupuesto;
+  actualizarPresupuesto();
+  presupuestoForm.reset();
 });
 
-// Evento para el ícono de papelera
-gastosDiv.addEventListener("click", (event) => {
-  if (event.target.classList.contains("fa-trash")) {
-    const id = event.target.parentNode.getAttribute("data-id");
-    gastos = gastos.filter((gasto) => gasto.id !== id);
-    actualizarGastos();
-    actualizarSaldo();
+gastoForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const gasto = document.getElementById('gasto').value;
+  const valor = Number(document.getElementById('valor').value);
+  const saldo = Number(saldoTd.innerHTML);
+  if (saldo < valor) {
+    alert('No tiene suficiente dinero para realizar este gasto');
+  } else {
+    const nuevoGasto = { gasto, valor };
+    gastos.push(nuevoGasto);
+    actualizarTablaGastos();
+    actualizarSaldo(valor);
+    gastoForm.reset();
   }
 });
+
+function actualizarTablaGastos() {
+  tablaGastos.innerHTML = '';
+  gastos.forEach((gasto, index) => {
+    tablaGastos.innerHTML += '<tr> <td>' + gasto.gasto + '</td> <td>' + gasto.valor + '</td> <td><button class="btn btn-danger" onclick="eliminarGasto(' + index + ')"><i class="bi bi-trash"></i></button></td> </tr>';
+  });
+  actualizarPresupuesto();
+}
+
+function actualizarPresupuesto() {
+  const gastoTotal = gastos.reduce((total, gasto) => total + gasto.valor, 0);
+  presupuestoTd.innerHTML = presupuesto;
+  gastoTd.innerHTML = gastoTotal;
+  saldoTd.innerHTML = presupuesto - gastoTotal;
+}
+
+function actualizarSaldo(valor) {
+  const saldo = Number(saldoTd.innerHTML);
+  saldoTd.innerHTML = presupuesto * gastoTotal;
+}
+
+function eliminarGasto(index) {
+  const valorGasto = gastos[index].valor;
+  gastos.splice(index, 1);
+  actualizarTablaGastos();
+  actualizarSaldo(-valorGasto);
+}
